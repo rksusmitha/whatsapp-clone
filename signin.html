@@ -1,0 +1,38 @@
+<form method="POST" action="">
+    <div class="col">
+        <div class="col">
+            {{ form.csrf_token() }}
+            
+            <label for=""> {{ form.username.label }}</label>
+            {{ form.username }}
+            
+            <label for=""> {{ form.contact.label }} </label>
+            {{ form.contact }}
+            
+            <label for=""> {{ form.password.label }}  </label>
+            
+            {{ form.password }}
+   
+            
+           {% for field,msg in form.errors.items() %}
+                 
+                 <small class="text-muted"> {{msg[0]}}   </small>
+
+            {% endfor %}
+            
+            {{ message }}
+            {% with messages = get_flashed_messages() %}
+               {% if messages %}
+                  <ul class=flashes>
+                      {% for message in messages %}
+                           <li>{{ message }}</li>
+                      {% endfor %}
+                  </ul>
+              {% endif %}
+            {% endwith %}
+        </div>
+        <div class="col">
+            {{ form.submit(class="btn btn-danger")}}
+        </div>
+    </div>
+</form>
